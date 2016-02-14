@@ -153,13 +153,20 @@ def infixToPostfix(infixexer):
 
 
 def checkPriority(token, stack):
-    if token == "+" or token == "-":
-        if stack == "/" or stack == "*":
+
+    if token == "+":
+        if stack in "+/*-":
             return 1
-        else:
-            return 0
-    elif token == "/" or token == "*":
-        return 0
+    elif token == "-":
+        if stack in "-/*":
+            return 1
+    elif token == "*":
+        if stack in "*/":
+            return 1
+    else:
+        if stack in "/":
+            return 1
+    return 0
 
 
 def less_or_equal_prec(a,b):
@@ -172,8 +179,11 @@ def less_or_equal_prec(a,b):
 
 
 if __name__ == "__main__":
-    test = "1 / 10 + 10"
-    result = infixToPostfix(test)
+    # test = "6 - 2 - 2"
+    # # 62-2-
+    # test = "7 - 2 + 9"
+    # test = "10 * 9 / 7"
+    # result = infixToPostfix(test)
     print "Infix:   "+test
     print "Postfix: "+(infixToPostfix(test))
     print infixNotation(result), '=', calc(result)
