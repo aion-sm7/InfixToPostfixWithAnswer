@@ -179,11 +179,8 @@ def less_or_equal_prec(a,b):
 
 
 if __name__ == "__main__":
-    # test = "6 - 2 - 2"
-    # # 62-2-
-    # test = "7 - 2 + 9"
-    # test = "10 * 9 / 7"
-    # result = infixToPostfix(test)
+    test = raw_input()
+    result = infixToPostfix(test)
     print "Infix:   "+test
     print "Postfix: "+(infixToPostfix(test))
     print infixNotation(result), '=', calc(result)
